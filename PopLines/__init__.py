@@ -16,6 +16,11 @@ import sys
 
 POP_TYPES = ('head', 'tail', 'random')
 
+__version__ = '1.0.0'
+__version_tuple__ = (1, 0, 0)
+
+__all__ = ('POP_TYPES', 'popLines', 'popHead', 'popTail', 'popRandom')
+
 def popLines(popType, numLines, filename):
     '''
         popLines - Remove lines from a given file, and return them.
