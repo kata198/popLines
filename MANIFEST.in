@@ -1,0 +1,9 @@
+recursive-include PopLines *.py
+include setup.py
+include README.md
+include README.rst
+include popHead
+include popTail
+include popRandom
+include ChangeLog
+include MANIFEST.in
