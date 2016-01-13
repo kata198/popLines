@@ -1,4 +1,4 @@
-stripLines
+popLines
 ==========
 
 Tools to pop lines from the head/tail of a file to stdout. You can also remove random items from the given files to stdout.
