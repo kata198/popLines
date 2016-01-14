@@ -5,5 +5,7 @@ include README.rst
 include popHead
 include popTail
 include popRandom
+include popRange
+include popThese
 include ChangeLog
 include MANIFEST.in
