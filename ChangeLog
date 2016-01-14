@@ -1,2 +1,8 @@
+* 1.1.0 - Jan 13 2016
+- Cleaned up and expanded on documentation
+- Added two new modes and commands, "range" for doing a range (start,stop or
+start,stop,step) and "these" for specific lines. All are one-origin
+inclusive.
+
 * 1.0.0 - Jan 13 2016
 - First Release

@@ -5,21 +5,23 @@
 #  as LICENSE. You may also find the full text at https://github.com/kata198/popLines/LICENSE
 #
 
-#  This program turns files into queues. You can pop off random elements within a given file
+#  This program turns files into queues. You can pop off specific lines to stdout.
 #   So your file can contain a list of items to process, and you can use this to pop off that queue.
 
 #vim: set ts=4 sw=4 expandtab
 import os
 import sys
 
-from PopLines import popRandom
+from PopLines import popThese
 
 def printUsage():
-    sys.stderr.write('''Usage: popRandom [number of lines] [filename]
+    sys.stderr.write('''Usage: popThese [line number] (next line numer...) [filename]
 
-Removes the given number of lines from a random selection within the provided file, returning on stdout.
+Removes the given lines (1-origin) from filename, returning on stdout.
 
-Use this program to turn a list into a queue.
+You can use negative numbers to mean from-the-end (-1 is last line, -2 is second-to-last)
+
+Example: popThese 1 4 7 myfile.txt > linesOneFourAndSeven.txt
 ''')
 
 if __name__ == '__main__':
@@ -30,20 +32,19 @@ if __name__ == '__main__':
 
     args = sys.argv[1:]
 
-    if len(args) != 2:
-        sys.stderr.write('Wrong number of arguments.\n\n')
+    if len(args) < 2:
+        sys.stderr.write('Not enough arguments.\n\n')
         printUsage()
         sys.exit(1)
 
-    numLines = args[0]
-    if not numLines.isdigit():
-        sys.stderr.write('Number of lines (second argument) must be an integer.\n\n')
+    try:
+        numLines = [int(x) for x in args[:-1]]
+    except Exception as e:
+        sys.stderr.write('Line numbers must be integers.\n\n')
         printUsage()
         sys.exit(1)
 
-    numLines = int(numLines)
-
-    filename = args[1]
+    filename = args[-1]
     if not os.path.exists(filename):
         sys.stderr.write('No such file: %s\n' %(filename,))
         sys.exit(2)
@@ -52,10 +53,9 @@ if __name__ == '__main__':
         sys.exit(2)
 
     try:
-        output = popRandom(numLines, filename)
+        output = popThese(numLines, filename)
     except Exception as e:
         sys.stderr.write('Error: %s\n' %(str(e,)))
-        #raise e
         sys.exit(2)
 
     if len(output) > 0:

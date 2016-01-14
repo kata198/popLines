@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import sys
 
 from setuptools import setup
@@ -7,6 +8,11 @@ from setuptools import setup
 if __name__ == '__main__':
 
     summary = 'Tools to pop lines from the head/tail of a file to stdout. Makes files into queues!'
+
+    # Ensure we are in the same directory as this setup.py
+    dirName = os.path.dirname(__file__)
+    if dirName and os.getcwd() != dirName:
+        os.chdir(dirName)
     try:
         with open('README.rst', 'rt') as f:
             long_description = f.read()
@@ -15,7 +21,7 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='popLines',
-        version='1.0',
+        version='1.1.0',
         scripts=['popHead', 'popTail', 'popRandom'],
         modules=['PopLines'],
         packages=['PopLines'],
