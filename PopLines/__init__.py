@@ -41,10 +41,17 @@ def popLines(popType, numLines, filename, saveChanges=True):
               Types are:
 
                 head     - Remove from the top, numLines items
+
                 tail     - Remove from the bottom, numLines items
-                random   - Remove and sort randomly, numLines items
+
+                random   - Remove and sort randomly. "numLines" supports two formats, either old format (number of lines),
+                            or new format: tuple(numLines, keepOrdered) where keepOrdered is a bool on whether the resulting lines
+                            should be ordered (i.e. if random numbers are [5, 1, 2] and keepOrdered is True, you will get lines [1, 2, 5],
+                            otherwise you will get [5, 1, 2].
+
                 range    - Remove an inclusive 1-origin range. numLines is a tuple of (start, finish) or (start, finish, step). Use of negatives is allowed 
                             [e.x. (3, -1) returns the third line and all further, up to and including the final line]
+
                 these     - Remove specific lines, 1-origin. numLines is an array of 1-origin line numbers to remove.
                             [e.x. [3, 5, 6, 8] removes the third, fifth, sixth, and eigth lines.]
 
@@ -65,7 +72,7 @@ def popLines(popType, numLines, filename, saveChanges=True):
     if popType not in POP_TYPES:
         raise ValueError('Given popType %s does not match available pop types: ( %s )' %(str(popType), ', '.join(POP_TYPES)))
 
-    if popType in ('head', 'tail', 'random'):
+    if popType in ('head', 'tail'):
         try:
             numLines = int(numLines)
             if numLines <= 0:
@@ -105,7 +112,16 @@ def popLines(popType, numLines, filename, saveChanges=True):
         elif popType == 'these':
             if 0 in numLines or '0' in numLines:
                 raise ValueError('Specific line numbers are 1-origin. 0 was given.')
-                
+    elif popType == 'random':
+        try:
+            (numLines, keepOrdered) = numLines
+        except:
+            # Old signature
+            numLines = int(numLines)
+            if numLines <= 0:
+                raise ValueError('negative number')
+            keepOrdered = False
+            
                 
 
     
@@ -202,6 +218,10 @@ def popLines(popType, numLines, filename, saveChanges=True):
                 randNumbers.append(nextNumber)
             output = []
             newLines = []
+
+            if keepOrdered:
+                randNumbers.sort()
+
             for i in range(len(lines)):
                 if i in randNumbers:
                     output.append(lines[i])
@@ -209,8 +229,9 @@ def popLines(popType, numLines, filename, saveChanges=True):
                     newLines.append(lines[i])
             lines = newLines
 
-        # Randomize the result order
-        random.shuffle(output)
+        if not keepOrdered:
+            # Randomize the result order
+            random.shuffle(output)
 
     if saveChanges:
 
@@ -245,7 +266,7 @@ def popTail(numLines, filename, saveChanges=True):
     '''
     return popLines('tail', numLines, filename, saveChanges)
 
-def popRandom(numLines, filename, saveChanges=True):
+def popRandom(numLines, filename, keepOrdered=False, saveChanges=True):
     '''
         popRandom - Pops a given number of lines from random positions within a given file.
 
@@ -253,7 +274,7 @@ def popRandom(numLines, filename, saveChanges=True):
 
         Shortcut for popLines('head', numLines, filename)
     '''
-    return popLines('random', numLines, filename, saveChanges)
+    return popLines('random', (numLines, keepOrdered), filename, saveChanges)
 
 def popRange(start, stop, step, filename, saveChanges=True):
     '''
