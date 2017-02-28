@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     setup(name='popLines',
         version='1.1.0',
-        scripts=['popHead', 'popTail', 'popRandom'],
+        scripts=['popHead', 'popTail', 'popRandom', 'popRange', 'popThese'],
         modules=['PopLines'],
         packages=['PopLines'],
         provides=['PopLines'],
