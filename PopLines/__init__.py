@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 #
-#    Copyright (c) 2016 Timothy Savannah All Rights Reserved
+#    Copyright (c) 2016, 2017 Timothy Savannah All Rights Reserved
 #  under terms of the GPL version 2. You should have recieved a copy of this with distribution,
 #  as LICENSE. You may also find the full text at https://github.com/kata198/popLines/LICENSE
 #
 
 #  This program turns files into queues. You can pop off the head or tail of a file to stdout.
 #   So your file can contain a list of items to process, and you can use this to pop off that queue.
+#
+#  You can also use "--peek" flag (or saveChanges in this module) to act as pure extraction and NOT
+#    modify the endpoint file, as if it were a queue.
 
 #vim: set ts=4 sw=4 expandtab
 import os
@@ -29,7 +32,7 @@ __version_tuple__ = (1, 1, 1)
 __all__ = ('POP_TYPES', 'popLines', 'popHead', 'popTail', 'popRandom', 'popRange', 'popThese')
 
 
-def popLines(popType, numLines, filename):
+def popLines(popType, numLines, filename, saveChanges=True):
     '''
         popLines - Remove lines from a given file, and return them.
 
@@ -50,6 +53,8 @@ def popLines(popType, numLines, filename):
 
 
             @param filename <str> - Path to the filename to pop lines
+
+            @param saveChanges <bool> - Default True, if False op will be a "peek" not a "pop" (i.e. will return the lines, but will not modify the source file)
 
             @raises ValueError - Raised if invalid argument passes
             @raises IOError - If any error during reading/writing to file
@@ -207,18 +212,20 @@ def popLines(popType, numLines, filename):
         # Randomize the result order
         random.shuffle(output)
 
-    try:
-        with open(filename, 'wt') as f:
-            f.write('\n'.join(lines))
-            if len(lines) > 0:
-                f.write('\n')
-    except Exception as e:
-        raise IOError('Unable to write to %s (%s)\n' %(filename, str(e)))
+    if saveChanges:
+
+        try:
+            with open(filename, 'wt') as f:
+                f.write('\n'.join(lines))
+                if len(lines) > 0:
+                    f.write('\n')
+        except Exception as e:
+            raise IOError('Unable to write to %s (%s)\n' %(filename, str(e)))
 
     return output
         
 
-def popHead(numLines, filename):
+def popHead(numLines, filename, saveChanges=True):
     '''
         popHead - Pops a given number of lines from the head of a file.
 
@@ -226,9 +233,9 @@ def popHead(numLines, filename):
 
         Shortcut for popLines('head', numLines, filename)
     '''
-    return popLines('head', numLines, filename)
+    return popLines('head', numLines, filename, saveChanges)
 
-def popTail(numLines, filename):
+def popTail(numLines, filename, saveChanges=True):
     '''
         popTail - Pops a given number of lines from the tail of a file.
 
@@ -236,9 +243,9 @@ def popTail(numLines, filename):
 
         Shortcut for popLines('head', numLines, filename)
     '''
-    return popLines('tail', numLines, filename)
+    return popLines('tail', numLines, filename, saveChanges)
 
-def popRandom(numLines, filename):
+def popRandom(numLines, filename, saveChanges=True):
     '''
         popRandom - Pops a given number of lines from random positions within a given file.
 
@@ -246,9 +253,9 @@ def popRandom(numLines, filename):
 
         Shortcut for popLines('head', numLines, filename)
     '''
-    return popLines('random', numLines, filename)
+    return popLines('random', numLines, filename, saveChanges)
 
-def popRange(start, stop, step, filename):
+def popRange(start, stop, step, filename, saveChanges=True):
     '''
         popRange - Pops a given range (1-origin, inclusive) from a file.
 
@@ -256,9 +263,9 @@ def popRange(start, stop, step, filename):
 
         Shortcut for popLines('range', (start, stop, step), filename)
     '''
-    return popLines('range', (start, stop, step), filename)
+    return popLines('range', (start, stop, step), filename, saveChanges)
 
-def popThese(lineNumbers, filename):
+def popThese(lineNumbers, filename, saveChanges=True):
     '''
         popThese - Pops specific lines (1-origin) from a file
 
@@ -266,5 +273,5 @@ def popThese(lineNumbers, filename):
 
         Shortcut for popLines('these', lineNumbers, filename)
     '''
-    return popLines('these', lineNumbers, filename)
+    return popLines('these', lineNumbers, filename, saveChanges)
 
