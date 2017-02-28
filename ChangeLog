@@ -1,3 +1,6 @@
+* 1.1.1 - Feb 28 2017
+- Add missing scripts to setup.py
+
 * 1.1.0 - Jan 13 2016
 - Cleaned up and expanded on documentation
 - Added two new modes and commands, "range" for doing a range (start,stop or
