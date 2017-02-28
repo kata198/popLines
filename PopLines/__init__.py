@@ -23,8 +23,8 @@ import sys
 #    these    - Remove specific lines, 0-origin. numLines is an array of 0-origin line numbers to remove.
 POP_TYPES = ('head', 'tail', 'random', 'range', 'these')
 
-__version__ = '1.1.0'
-__version_tuple__ = (1, 1, 0)
+__version__ = '1.1.1'
+__version_tuple__ = (1, 1, 1)
 
 __all__ = ('POP_TYPES', 'popLines', 'popHead', 'popTail', 'popRandom', 'popRange', 'popThese')
 
