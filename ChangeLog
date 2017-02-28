@@ -1,3 +1,8 @@
+* 2.0.0 - Feb 28 2017
+- Add the "--peek" option to all of the pop* commands and the module (as "saveChanges" argument, default True). 
+  This can be used to just pull the lines without modifying the source file (i.e. instead of a queue, you can use it for simple extraction)
+- Add the "--ordered" option (and keepOrdered in module) to the "popRandom" command. When this is present, the output lines will still be picked at random, but they will be output in the order they appear in the file. By default, the old behaviour is retained, and random lines will be output in random order.
+
 * 1.1.1 - Feb 28 2017
 - Add missing scripts to setup.py
 

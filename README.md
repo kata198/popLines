@@ -36,9 +36,22 @@ The followings modes and their associated command name are given:
 
 **Random** - popRandom \[numLines\] \[filename\] - Removes "numLines" from random positions within provided "filename", and prints to stdout in a random order.
 
+
+You can pass the --ordered flag, and the randomly-selected lines will be output in the same order they appear in the file. By default, the random lines will be output in random order.
+
+
 **Range** - popRange \[start\] \[stop\] (optional: \[step\]) \[filename\] - Removes lines using inclusive 1-origin start, stop, and optional step, and prints to stdout. Negative numbers are supported to mean "from the end", -1 is last line, -2 is second-to-last line.
 
 **These** - popThese \[line1\] \[...lineN\] \[filename\] - Removes specific lines given 1-origin numbers. If numbers are out of range, that number will be ommited. Lines are returned in provided order, and duplicates are allowed. Negative numbers are supported to mean "from the end".
+
+
+Peeking
+-------
+
+By default, the pop\* commands are designed to implement queues, and thus they perform real "pops" and remove the elements extracted from the source file.
+
+If you'd just like to "peek" (extract lines but keep them in the source), add "--peek" when invoking any of the pop\* commands.
+
 
 Module
 ------

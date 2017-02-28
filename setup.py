@@ -21,12 +21,12 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='popLines',
-        version='1.1.1',
+        version='2.0.0',
         scripts=['popHead', 'popTail', 'popRandom', 'popRange', 'popThese'],
         modules=['PopLines'],
         packages=['PopLines'],
         provides=['PopLines'],
-        keywords=['popLines', 'file', 'head', 'tail', 'random', 'queue', 'pop', 'lines', 'text', 'popHead', 'popTail', 'popRandom' ],
+        keywords=['popLines', 'file', 'head', 'tail', 'random', 'queue', 'pop', 'lines', 'peek', 'extract', 'text', 'popHead', 'popTail', 'popRandom' ],
         url='https://github.com/kata198/popLines',
         long_description=long_description,
         author='Tim Savannah',
