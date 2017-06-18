@@ -21,7 +21,7 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='popLines',
-        version='2.1.0',
+        version='2.1.1',
         scripts=['popHead', 'popTail', 'popRandom', 'popRange', 'popThese'],
         modules=['PopLines'],
         packages=['PopLines'],
