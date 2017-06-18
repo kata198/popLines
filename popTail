@@ -27,6 +27,10 @@ def printUsage():
 
 Removes the given number of lines from the bottom of provided file, returning on stdout.
 
+If the "number of lines" is negative ( -N ), popTail  will pop lines,
+  starting at the tail (end), and stopping at the Nth-line.
+For example, if "number of lines" is -2 on a 5 line file, the last 3 will be popped.
+
 Use this program to turn a list into a queue.
 ''')
 
@@ -51,7 +55,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     numLines = args[0]
-    if not numLines.isdigit():
+    if not numLines.isdigit() and not (numLines.startswith('-') and numLines[1:].isdigit()):
         sys.stderr.write('Number of lines (second argument) must be an integer.\n\n')
         printUsage()
         sys.exit(1)

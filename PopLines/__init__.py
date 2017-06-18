@@ -77,10 +77,12 @@ def popLines(popType, numLines, filename, saveChanges=True):
     if popType in ('head', 'tail'):
         try:
             numLines = int(numLines)
-            if numLines <= 0:
-                raise ValueError('negative number')
         except:
-            raise ValueError('Number of lines must be a positive integer.')
+            raise ValueError('Number of lines must be an integer. Got: %s' %(repr(numLines),))
+        if numLines == 0:
+            raise ValueError('Number of lines is 0, nothing to do.')
+
+
     elif popType in ('range', 'these'):
         if not issubclass(numLines.__class__, (tuple, list, set, frozenset)):
             try:
@@ -144,12 +146,28 @@ def popLines(popType, numLines, filename, saveChanges=True):
         lines.pop()
 
     if popType == 'head':
-        output = lines[:numLines]
-        lines = lines[numLines:]
+        if numLines > 0:
+            output = lines[:numLines]
+            lines = lines[numLines:]
+        else:
+            endPos = len(lines) - (-1 * numLines)
+            if endPos <= 0:
+                output = []
+            else:
+                output = lines[:endPos]
+                lines  = lines[endPos:]
     elif popType == 'tail':
-        startPos = max(0, len(lines) - numLines)
-        output = lines[startPos:]
-        lines = lines[:startPos]
+        if numLines > 0:
+            startPos = max(0, len(lines) - numLines)
+            output = lines[startPos:]
+            lines = lines[:startPos]
+        else:
+            startPos = -1 * numLines
+            if startPos >= len(lines):
+                output = []
+            else:
+                output = lines[startPos:]
+                lines  = lines[:startPos]
     elif popType == 'range':
         if rangeStart < 0:
             rangeStart = len(lines) + rangeStart
