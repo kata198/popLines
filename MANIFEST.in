@@ -1,4 +1,5 @@
 recursive-include PopLines *.py
+recursive-include doc *.html
 include setup.py
 include README.md
 include README.rst

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html ><head ><title >Python: package PopLines</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head><body bgcolor="#f0f0f8" >
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading" >
+<tr bgcolor="#7799ee" >
+<td valign="bottom" >&nbsp;<br />
+<font color="#ffffff" face="helvetica, arial" >&nbsp;<br /><big ><big ><strong >PopLines</strong></big></big> (version 2.1.0)</font></td><td align="right" valign="bottom" ><font color="#ffffff" face="helvetica, arial" ><a href="PopLines.html" >index</a></font></td></tr></table>
+    <p ><tt >#&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2016,&nbsp;2017&nbsp;Timothy&nbsp;Savannah&nbsp;All&nbsp;Rights&nbsp;Reserved<br />
+#&nbsp;&nbsp;under&nbsp;terms&nbsp;of&nbsp;the&nbsp;GPL&nbsp;version&nbsp;2.&nbsp;You&nbsp;should&nbsp;have&nbsp;recieved&nbsp;a&nbsp;copy&nbsp;of&nbsp;this&nbsp;with&nbsp;distribution,<br />
+#&nbsp;&nbsp;as&nbsp;LICENSE.&nbsp;You&nbsp;may&nbsp;also&nbsp;find&nbsp;the&nbsp;full&nbsp;text&nbsp;at&nbsp;https://github.com/kata198/popLines/LICENSE<br />
+#</tt></p>
+<p >
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
+<tr bgcolor="#aa55cc" >
+<td colspan="3" valign="bottom" >&nbsp;<br />
+<font color="#ffffff" face="helvetica, arial" ><big ><strong >Package Contents</strong></big></font></td></tr>
+    
+<tr ><td bgcolor="#aa55cc" ><tt >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td >&nbsp;</td>
+<td width="100%" ><table width="100%" summary="list" ><tr ><td width="25%" valign="top" ></td><td width="25%" valign="top" ></td><td width="25%" valign="top" ></td><td width="25%" valign="top" ></td></tr></table></td></tr></table><p >
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
+<tr bgcolor="#eeaa77" >
+<td colspan="3" valign="bottom" >&nbsp;<br />
+<font color="#ffffff" face="helvetica, arial" ><big ><strong >Functions</strong></big></font></td></tr>
+    
+<tr ><td bgcolor="#eeaa77" ><tt >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td >&nbsp;</td>
+<td width="100%" ><dl ><dt ><a name="-popHead" ><strong >popHead</strong></a>(numLines, filename, saveChanges=True)</dt><dd ><tt >popHead&nbsp;-&nbsp;Pops&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;lines&nbsp;from&nbsp;the&nbsp;head&nbsp;of&nbsp;a&nbsp;file.<br />
+&nbsp;<br />
+@see&nbsp;popLines<br />
+&nbsp;<br />
+Shortcut&nbsp;for&nbsp;<a href="#-popLines" >popLines</a>('head',&nbsp;numLines,&nbsp;filename)</tt></dd></dl>
+ <dl ><dt ><a name="-popLines" ><strong >popLines</strong></a>(popType, numLines, filename, saveChanges=True)</dt><dd ><tt >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popLines&nbsp;-&nbsp;Remove&nbsp;lines&nbsp;from&nbsp;a&nbsp;given&nbsp;file,&nbsp;and&nbsp;return&nbsp;them.<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@param&nbsp;popType&nbsp;&lt;str&gt;&nbsp;-&nbsp;The&nbsp;mode&nbsp;of&nbsp;selection&nbsp;to&nbsp;use&nbsp;when&nbsp;picking&nbsp;which&nbsp;lines&nbsp;to&nbsp;pop.<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Types&nbsp;are:<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;head&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Remove&nbsp;from&nbsp;the&nbsp;top,&nbsp;numLines&nbsp;items<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Remove&nbsp;from&nbsp;the&nbsp;bottom,&nbsp;numLines&nbsp;items<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;random&nbsp;&nbsp;&nbsp;-&nbsp;Remove&nbsp;and&nbsp;sort&nbsp;randomly.&nbsp;"numLines"&nbsp;supports&nbsp;two&nbsp;formats,&nbsp;either&nbsp;old&nbsp;format&nbsp;(number&nbsp;of&nbsp;lines),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;new&nbsp;format:&nbsp;tuple(numLines,&nbsp;keepOrdered)&nbsp;where&nbsp;keepOrdered&nbsp;is&nbsp;a&nbsp;bool&nbsp;on&nbsp;whether&nbsp;the&nbsp;resulting&nbsp;lines<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;ordered&nbsp;(i.e.&nbsp;if&nbsp;random&nbsp;numbers&nbsp;are&nbsp;[5,&nbsp;1,&nbsp;2]&nbsp;and&nbsp;keepOrdered&nbsp;is&nbsp;True,&nbsp;you&nbsp;will&nbsp;get&nbsp;lines&nbsp;[1,&nbsp;2,&nbsp;5],<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise&nbsp;you&nbsp;will&nbsp;get&nbsp;[5,&nbsp;1,&nbsp;2].<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Remove&nbsp;an&nbsp;inclusive&nbsp;1-origin&nbsp;range.&nbsp;numLines&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;(start,&nbsp;finish)&nbsp;or&nbsp;(start,&nbsp;finish,&nbsp;step).&nbsp;Use&nbsp;of&nbsp;negatives&nbsp;is&nbsp;allowed&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[e.x.&nbsp;(3,&nbsp;-1)&nbsp;returns&nbsp;the&nbsp;third&nbsp;line&nbsp;and&nbsp;all&nbsp;further,&nbsp;up&nbsp;to&nbsp;and&nbsp;including&nbsp;the&nbsp;final&nbsp;line]<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;these&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Remove&nbsp;specific&nbsp;lines,&nbsp;1-origin.&nbsp;numLines&nbsp;is&nbsp;an&nbsp;array&nbsp;of&nbsp;1-origin&nbsp;line&nbsp;numbers&nbsp;to&nbsp;remove.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[e.x.&nbsp;[3,&nbsp;5,&nbsp;6,&nbsp;8]&nbsp;removes&nbsp;the&nbsp;third,&nbsp;fifth,&nbsp;sixth,&nbsp;and&nbsp;eigth&nbsp;lines.]<br />
+&nbsp;<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@param&nbsp;numLines&nbsp;&lt;int/tuple(see&nbsp;below)&gt;&nbsp;-&nbsp;Generally,&nbsp;number&nbsp;of&nbsp;lines&nbsp;to&nbsp;remove&nbsp;from&nbsp;filename.&nbsp;If&nbsp;there&nbsp;are&nbsp;not&nbsp;this&nbsp;many&nbsp;lines,&nbsp;every&nbsp;line&nbsp;in&nbsp;the&nbsp;file&nbsp;will&nbsp;be&nbsp;removed.&nbsp;Some&nbsp;values&nbsp;of&nbsp;#popType&nbsp;overload&nbsp;this&nbsp;value,&nbsp;see&nbsp;above.<br />
+&nbsp;<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Path&nbsp;to&nbsp;the&nbsp;filename&nbsp;to&nbsp;pop&nbsp;lines<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@param&nbsp;saveChanges&nbsp;&lt;bool&gt;&nbsp;-&nbsp;Default&nbsp;True,&nbsp;if&nbsp;False&nbsp;op&nbsp;will&nbsp;be&nbsp;a&nbsp;"peek"&nbsp;not&nbsp;a&nbsp;"pop"&nbsp;(i.e.&nbsp;will&nbsp;return&nbsp;the&nbsp;lines,&nbsp;but&nbsp;will&nbsp;not&nbsp;modify&nbsp;the&nbsp;source&nbsp;file)<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@raises&nbsp;ValueError&nbsp;-&nbsp;Raised&nbsp;if&nbsp;invalid&nbsp;argument&nbsp;passes<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@raises&nbsp;IOError&nbsp;-&nbsp;If&nbsp;any&nbsp;error&nbsp;during&nbsp;reading/writing&nbsp;to&nbsp;file<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;list&lt;str&gt;&nbsp;-&nbsp;A&nbsp;list&nbsp;of&nbsp;the&nbsp;lines&nbsp;removed&nbsp;from&nbsp;the&nbsp;file.&nbsp;If&nbsp;converting&nbsp;to&nbsp;a&nbsp;string,&nbsp;join&nbsp;with&nbsp;"<br />
+",&nbsp;and&nbsp;if&nbsp;length&nbsp;&gt;&nbsp;0&nbsp;then&nbsp;add&nbsp;a&nbsp;final&nbsp;newline.</tt></dd></dl>
+ <dl ><dt ><a name="-popRandom" ><strong >popRandom</strong></a>(numLines, filename, keepOrdered=False, saveChanges=True)</dt><dd ><tt >popRandom&nbsp;-&nbsp;Pops&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;lines&nbsp;from&nbsp;random&nbsp;positions&nbsp;within&nbsp;a&nbsp;given&nbsp;file.<br />
+&nbsp;<br />
+@see&nbsp;popLines<br />
+&nbsp;<br />
+Shortcut&nbsp;for&nbsp;<a href="#-popLines" >popLines</a>('head',&nbsp;numLines,&nbsp;filename)</tt></dd></dl>
+ <dl ><dt ><a name="-popRange" ><strong >popRange</strong></a>(start, stop, step, filename, saveChanges=True)</dt><dd ><tt >popRange&nbsp;-&nbsp;Pops&nbsp;a&nbsp;given&nbsp;range&nbsp;(1-origin,&nbsp;inclusive)&nbsp;from&nbsp;a&nbsp;file.<br />
+&nbsp;<br />
+@see&nbsp;popLines<br />
+&nbsp;<br />
+Shortcut&nbsp;for&nbsp;<a href="#-popLines" >popLines</a>('range',&nbsp;(start,&nbsp;stop,&nbsp;step),&nbsp;filename)</tt></dd></dl>
+ <dl ><dt ><a name="-popTail" ><strong >popTail</strong></a>(numLines, filename, saveChanges=True)</dt><dd ><tt >popTail&nbsp;-&nbsp;Pops&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;lines&nbsp;from&nbsp;the&nbsp;tail&nbsp;of&nbsp;a&nbsp;file.<br />
+&nbsp;<br />
+@see&nbsp;popLines<br />
+&nbsp;<br />
+Shortcut&nbsp;for&nbsp;<a href="#-popLines" >popLines</a>('head',&nbsp;numLines,&nbsp;filename)</tt></dd></dl>
+ <dl ><dt ><a name="-popThese" ><strong >popThese</strong></a>(lineNumbers, filename, saveChanges=True)</dt><dd ><tt >popThese&nbsp;-&nbsp;Pops&nbsp;specific&nbsp;lines&nbsp;(1-origin)&nbsp;from&nbsp;a&nbsp;file<br />
+&nbsp;<br />
+@see&nbsp;popLines<br />
+&nbsp;<br />
+Shortcut&nbsp;for&nbsp;<a href="#-popLines" >popLines</a>('these',&nbsp;lineNumbers,&nbsp;filename)</tt></dd></dl>
+</td></tr></table><p >
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
+<tr bgcolor="#55aa55" >
+<td colspan="3" valign="bottom" >&nbsp;<br />
+<font color="#ffffff" face="helvetica, arial" ><big ><strong >Data</strong></big></font></td></tr>
+    
+<tr ><td bgcolor="#55aa55" ><tt >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td >&nbsp;</td>
+<td width="100%" ><strong >POP_TYPES</strong> = ('head', 'tail', 'random', 'range', 'these')<br />
+<strong >__all__</strong> = ('POP_TYPES', 'popLines', 'popHead', 'popTail', 'popRandom', 'popRange', 'popThese')<br />
+<strong >__version_tuple__</strong> = (2, 1, 0)</td></tr></table>
+</p></p></p></body></html>
