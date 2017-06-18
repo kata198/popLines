@@ -7,7 +7,7 @@ from setuptools import setup
 
 if __name__ == '__main__':
 
-    summary = 'Tools to pop lines from the head/tail of a file to stdout. Makes files into queues!'
+    summary = 'Tools to pop/peek lines from the head/tail or known position within a given file, and output to stdout. Makes files into queues!'
 
     # Ensure we are in the same directory as this setup.py
     dirName = os.path.dirname(__file__)
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         modules=['PopLines'],
         packages=['PopLines'],
         provides=['PopLines'],
-        keywords=['popLines', 'file', 'head', 'tail', 'random', 'queue', 'pop', 'lines', 'peek', 'extract', 'text', 'popHead', 'popTail', 'popRandom' ],
+        keywords=['popLines', 'file', 'head', 'tail', 'random', 'queue', 'stack', 'pop', 'lines', 'peek', 'extract', 'text', 'popHead', 'popTail', 'popRandom', 'remove', 'position', 'line' ],
         url='https://github.com/kata198/popLines',
         long_description=long_description,
         author='Tim Savannah',

@@ -45,6 +45,9 @@ Modes
 -----
 
 
+For all actions which provide a line number, the numbers are 1-origin (first line is "1", second is "2").
+
+
 The followings modes and their associated command name are given:
 
 

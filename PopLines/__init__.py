@@ -19,15 +19,17 @@ import sys
 
 # POP_TYPES - All available pop types as modes for picking which lines to remove-and-return
 #
+#  All line numbers are 1-origin.
+#
 #    head     - Remove from the top, numLines items
 #    tail     - Remove from the bottom, numLines items
 #    random   - Remove and sort randomly, numLines items
 #    range    - Remove an inclusive range. numLines is a tuple of (start, finish)
-#    these    - Remove specific lines, 0-origin. numLines is an array of 0-origin line numbers to remove.
+#    these    - Remove specific lines, 1-origin. numLines is an array of 1-origin line numbers to remove.
 POP_TYPES = ('head', 'tail', 'random', 'range', 'these')
 
-__version__ = '2.0.0'
-__version_tuple__ = (2, 0, 0)
+__version__ = '2.0.1'
+__version_tuple__ = (2, 0, 2)
 
 __all__ = ('POP_TYPES', 'popLines', 'popHead', 'popTail', 'popRandom', 'popRange', 'popThese')
 
