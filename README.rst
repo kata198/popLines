@@ -53,8 +53,12 @@ The followings modes and their associated command name are given:
 
 **Head** - popHead [numLines] [filename] - Removes "numLines" from the top of provided "filename", and prints them on stdout.
 
+If *numLines* is a negative number, -N, popHead will pop lines starting from head up until the Nth-to-last line. For example, calling popHead -2 on a file with 6 lines will pop the first 4.
+
 
 **Tail** - popTail [numLines] [filename] - Removes "numLines" from the bottom of provided "filename", and prints them on stdout.
+
+If *numLines* is a negative number, -N, popTail will pop lines starting from tail up until the Nthline. For example, calling popTail -3 on a file with 8 lines will pop the last 5.
 
 
 **Random** - popRandom [numLines] [filename] - Removes "numLines" from random positions within provided "filename", and prints to stdout in a random order.
