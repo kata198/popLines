@@ -86,4 +86,4 @@ Module
 
 Functionality is exposed through a module, PopLines, which can perform all the same operations.
 
-
+You can checkout the pydoc here: http://pythonhosted.org/AdvancedHTMLParser/
