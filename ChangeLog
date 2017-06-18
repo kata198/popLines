@@ -1,3 +1,13 @@
+* 2.1.0 - Jun 18 2017
+- Update some typos in docs
+- pydoc
+- Support negative "numLines" to popHead, which will pop from the start up to
+the -Nth line. For example, popHead -3 on a file with 8 lines will pop the
+first 5 lines.
+- Support negative "numLines" to popTail, which will pop from the end up to
+the Nth line. For example, popTail -3 on a file with 8 lines will pop the last
+5 lines.
+
 * 2.0.0 - Feb 28 2017
 - Add the "--peek" option to all of the pop* commands and the module (as "saveChanges" argument, default True). 
   This can be used to just pull the lines without modifying the source file (i.e. instead of a queue, you can use it for simple extraction)
